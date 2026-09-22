@@ -1,0 +1,30 @@
+# Gradle build/workspace artifacts
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/**/build/
+
+# Compiled class files
+*.class
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Android Studio (if serafort-android module is added later)
+.cxx/
+local.properties
+captures/
+
+# Kotlin
+.kotlin/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
