@@ -1,0 +1,26 @@
+#!/bin/sh
+# Portable pre-commit hook for the Serafort Kotlin SDK.
+#
+# This is a Gradle/Kotlin module with no npm/Node.js involved, so Husky (an
+# npm-ecosystem tool) does not apply here. This plain POSIX shell script,
+# wired in via `git config core.hooksPath .githooks`, is the idiomatic
+# dependency-free equivalent for a JVM repo.
+#
+# Enable it once per clone with:
+#   git config core.hooksPath .githooks
+#
+# Kept intentionally lightweight: it only compiles main + test sources
+# (fast, catches syntax/type errors) rather than running the full test
+# suite. CI (`gradle check`) runs the full build, tests, and checks.
+
+set -e
+
+GRADLE_CMD="gradle"
+if [ -x "./gradlew" ]; then
+	GRADLE_CMD="./gradlew"
+fi
+
+echo "[pre-commit] Compiling Kotlin sources ($GRADLE_CMD compileKotlin compileTestKotlin)..."
+"$GRADLE_CMD" compileKotlin compileTestKotlin --no-daemon -q
+
+echo "[pre-commit] All checks passed."
