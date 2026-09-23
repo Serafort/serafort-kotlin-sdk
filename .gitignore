@@ -17,6 +17,7 @@ out/
 # Eclipse
 bin/
 .classpath
+.project
 
 # Android Studio (if serafort-android module is added later)
 .cxx/
